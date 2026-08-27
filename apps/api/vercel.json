@@ -1,15 +1,15 @@
 {
-  "version": 2,
-  "buildCommand": "npm install --workspaces=false && npm run vercel-build",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "functions": {
-    "src/vercel.ts": {
-      "maxDuration": 30
+    "api/index.ts": {
+      "runtime": "nodejs22.x"
     }
   },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/(.*)",
-      "dest": "src/vercel.ts"
+      "source": "/(.*)",
+      "destination": "/api/index.ts"
     }
   ]
 }
