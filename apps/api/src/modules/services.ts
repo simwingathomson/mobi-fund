@@ -224,7 +224,16 @@ export class PaymentsService {
   async collect(dto: PaymentDto) {
     const loan = await this.prisma.loan.findUnique({ where: { id: dto.loanId } });
     if (!loan) throw new NotFoundException('Loan not found');
-    if (![LoanStatus.DISBURSED, LoanStatus.ACTIVE].includes(loan.status)) throw new BadRequestException('Repayments can only be recorded for disbursed or active loans');
+    const allowedStatuses: LoanStatus[] = [
+  LoanStatus.DISBURSED,
+  LoanStatus.ACTIVE,
+];
+
+if (!allowedStatuses.includes(loan.status)) {
+  throw new BadRequestException(
+    'Repayments can only be recorded for disbursed or active loans',
+  );
+}
     const payment = await this.prisma.payment.create({
       data: {
         loanId: dto.loanId,
