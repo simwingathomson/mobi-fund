@@ -1,0 +1,16 @@
+{
+  "expo": {
+    "name": "MobiFund",
+    "slug": "mobifund",
+    "scheme": "mobifund",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "platforms": ["android"],
+    "android": {
+      "package": "com.mobifund.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#087f5b"
+      }
+    }
+  }
+}

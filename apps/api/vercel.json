@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "buildCommand": "npm install --workspaces=false && npm run vercel-build",
+  "functions": {
+    "src/vercel.ts": {
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/vercel.ts"
+    }
+  ]
+}
